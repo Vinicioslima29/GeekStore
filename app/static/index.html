@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GeekStore</title>
+</head>
+
+<body>
+
+    <h1>GeekStore</h1>
+
+    <input
+        type="text"
+        id="produto"
+        placeholder="Produto"
+    >
+
+    <input
+        type="text"
+        id="cartao"
+        placeholder="Cartão"
+    >
+
+    <input
+        type="text"
+        id="cupom"
+        placeholder="Cupom"
+    >
+
+    <button onclick="comprar()">
+        Comprar
+    </button>
+
+    <p id="resultado"></p>
+
+    <script>
+
+        async function comprar() {
+
+            const produto =
+                document.getElementById(
+                    "produto"
+                ).value
+
+            const cartao =
+                document.getElementById(
+                    "cartao"
+                ).value
+
+            const cupom =
+                document.getElementById(
+                    "cupom"
+                ).value
+
+            const response = await fetch(
+                "/api/comprar",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        produto,
+                        cartao,
+                        cupom
+                    })
+                }
+            )
+
+            const data =
+                await response.json()
+
+            document.getElementById(
+                "resultado"
+            ).innerText =
+                data.mensagem || data.detail
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,15 @@
+fastapi
+uvicorn
+pydantic
+
+pytest
+pytest-cov
+pytest-mock
+pytest-bdd
+
+tavern
+
+selenium
+webdriver-manager
+
+requests

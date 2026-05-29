@@ -1,0 +1,24 @@
+test_name: Validar API de produtos
+
+stages:
+  - name: Buscar produtos
+
+    request:
+      url: http://127.0.0.1:8000/api/produtos
+      method: GET
+
+    response:
+      status_code: 200
+
+      json:
+        - nome: "teclado"
+          preco: 200.0
+          estoque: !anyint
+
+        - nome: "mouse"
+          preco: 100.0
+          estoque: !anyint
+
+        - nome: "monitor"
+          preco: 900.0
+          estoque: !anyint
